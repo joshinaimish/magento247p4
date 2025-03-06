@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Catalog\Api\ProductRepositoryInterface">
+        <plugin name="add_custom_delivery_attribute_product_api" type="Nxtech\ProductCustomAttribute\Plugin\ProductDeliveryAttr"/>
+    </type>
+    <type name="Magento\Quote\Model\Quote\Item\Repository">
+        <plugin name="nxtech_cart_item_load_save" type="Nxtech\ProductCustomAttribute\Plugin\CartItemLoadSave" sortOrder="1"/>
+    </type>
+    <!-- Override default.phtml cart item file -->
+    <!-- <type name="Magento\Checkout\Block\Cart\AbstractCart">
+        <plugin name="item-test" type="Nxtech\ProductCustomAttribute\Plugin\Cart\AbstractCart" sortOrder="1"/>
+    </type> -->
+     <type name="Magento\Framework\EntityManager\Operation\ExtensionPool">
+        <arguments>
+            <argument name="extensionActions" xsi:type="array">
+                <item name="Magento\Catalog\Api\Data\ProductInterface" xsi:type="array">
+                    <item name="read" xsi:type="array">
+                        <item name="stock_item" xsi:type="string">Nxtech\ProductCustomAttribute\Model\ReadHandler</item>
+                    </item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+</config>

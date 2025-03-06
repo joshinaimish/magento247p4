@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Communication/etc/communication.xsd">
+  <topic name="asynchronous.product.delete" request="string">
+    <handler name="asynchronous.product.delete" type="Nxtech\MessageQueueExample\Model\ProductDeleteHandler" method="process"/>
+  </topic>
+</config>

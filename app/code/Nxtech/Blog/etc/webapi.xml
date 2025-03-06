@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+	<route url="/V1/nxtech-blog/blog" method="POST">
+		<service class="Nxtech\Blog\Api\BlogRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="Nxtech_Blog::Blog_save"/>
+		</resources>
+	</route>
+	<route url="/V1/nxtech-blog/blog/search" method="GET">
+		<service class="Nxtech\Blog\Api\BlogRepositoryInterface" method="getList"/>
+		<resources>
+			<resource ref="Nxtech_Blog::Blog_view"/>
+		</resources>
+	</route>
+	<route url="/V1/nxtech-blog/blog/:blogId" method="GET">
+		<service class="Nxtech\Blog\Api\BlogRepositoryInterface" method="get"/>
+		<resources>
+			<resource ref="Nxtech_Blog::Blog_view"/>
+		</resources>
+	</route>
+	<route url="/V1/nxtech-blog/blog/:blogId" method="PUT">
+		<service class="Nxtech\Blog\Api\BlogRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="Nxtech_Blog::Blog_update"/>
+		</resources>
+	</route>
+	<route url="/V1/nxtech-blog/blog/:blogId" method="DELETE">
+		<service class="Nxtech\Blog\Api\BlogRepositoryInterface" method="deleteById"/>
+		<resources>
+			<resource ref="Nxtech_Blog::Blog_delete"/>
+		</resources>
+	</route>
+</routes>

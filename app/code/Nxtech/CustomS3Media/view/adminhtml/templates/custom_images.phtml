@@ -1,0 +1,40 @@
+<?php
+/** @var \Nxtech\CustomS3Media\Block\Adminhtml\Product\CustomImages $block */
+?>
+
+<div class="s3-custom-image-section">
+    <?php $s3Urls = $block->getS3Url() ?>
+    <?php $s3StaticUrl = $block->getCustomS3URL(); ?>
+</div>
+<?php
+if ($s3Urls) {
+    $s3Urls = explode(",", $s3Urls); // This returns the raw textarea value
+    ?>
+    <h1><?= __("S3 Images") ?></h1>
+    <table>
+        <thead>
+            <tr>
+                <th><?= __("Image Name"); ?></th>
+                <th><?= __("Image Preview"); ?></th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+        <?php
+        foreach ($s3Urls as $urls) {
+            $imageUrl = $s3StaticUrl . $urls;
+            ?>
+            <tr>
+                <td><?= $imageUrl ?></td>
+                <td><img src="<?= $imageUrl ?>" alt="<?= $urls ?>" width="100" height="100"></td>
+            </tr>
+            <?php
+        }
+        ?>
+        </tbody>
+    </table>
+<?php } else {
+    ?>
+    <h5><?= __("There is no Custom S3 images"); ?></h5>
+    <?php
+}
+?>

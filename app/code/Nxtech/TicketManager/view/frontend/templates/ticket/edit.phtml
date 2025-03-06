@@ -1,0 +1,138 @@
+<?php
+/** @var \Nxtech\TicketManager\Block\TicketManager $block */
+$backUrl = $block->getViewUrl();
+$formKey = $block->getFormKey(); // Retrieve the form key
+$ticketData = $block->getTicket();
+$id = $ticketData->getId();
+$subject = $ticketData->getSubject();
+$status = $block->getStatusText($ticketData->getStatus());
+$priority = $block->getPriorityText($ticketData->getPriority());
+/* echo '<pre>';
+print_r($ticketData->getData());
+echo "</pre>"; */
+?>
+
+<a href="<?php echo $backUrl; ?>" class="back" title="<?= __('Back') ?>"><?= __('Back') ?></a>
+<div class="ticket-collection">
+    <div class="ticket-subject">
+        <h3><?= __($subject) ?></h3>
+    </div>
+    <div class="ticket-status">
+        <div>
+            <strong><?= __('Status') ?></strong>
+            <span><?= __($status) ?></span>
+        </div>
+        <div>
+            <strong><?= __('Priority') ?></strong>
+            <span><?= __($priority) ?></span>
+        </div>
+    </div>
+
+    <form class="form contact" action="<?= $block->escapeUrl($block->getFormAction()) ?>" id="ticket-form" method="post"
+        data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>" enctype="multipart/form-data"
+        data-mage-init='{"validation":{}}'>
+        <!-- Magento Form Key for CSRF protection -->
+        <input type="hidden" name="form_key" value="<?= $formKey ?>" />
+
+        <!-- Hidden Field to Pass Ticket ID -->
+        <input type="hidden" name="ticket_id" value="<?= $id ?>" />
+        <fieldset class="fieldset">
+            <legend class="legend"><span><?= $block->escapeHtml(__('Post a Reply')) ?></span></legend><br />
+            <div class="field ticket_description required">
+                <label class="label" for="ticket_description">
+                    <span><?= $block->escapeHtml(__('Message')) ?></span>
+                </label>
+                <div class="control">
+                    <textarea name="ticket_description" id="ticket_description"
+                        title="<?= $block->escapeHtmlAttr(__('Message')) ?>" class="input-text" cols="5" rows="3"
+                        data-validate="{required:true}"></textarea>
+                </div>
+            </div>
+            <div class="field attachment">
+                <label class="label" for="attachment">
+                    <span><?= $block->escapeHtml(__('Attachment')) ?></span>
+                </label>
+                <div class="control">
+                    <input type="file" id="attachment" name="attachment">
+                </div>
+            </div>
+        </fieldset>
+        <div class="actions-toolbar">
+            <div class="primary">
+                <input type="hidden" name="hideit" id="hideit" value="" />
+                <button type="submit" title="<?= $block->escapeHtmlAttr(__('Closed')) ?>" class="action submit primary"
+                    id="send2">
+                    <span><?= $block->escapeHtml(__('Closed')) ?></span>
+                </button>
+                <button type="submit" title="<?= $block->escapeHtmlAttr(__('Submit')) ?>" class="action submit primary"
+                    id="send2">
+                    <span><?= $block->escapeHtml(__('Submit')) ?></span>
+                </button>
+            </div>
+        </div>
+    </form>
+    <?php
+    $collection = $block->getTicketHistory($id);
+    /*  print_r($collection->getData());  */ ?>
+    <?php if ($collection->getSize() > 0): ?>
+        <div class="ticket-history-section">
+            <?php
+            foreach ($collection as $message):
+                $userId = $message->getUserId();
+                $description = $message->getTicketDescription();
+                $attachment = $block->getAttachmentFile($message->getAttachment());
+                $userType = $message->getUserType();
+                $createAt = $message->getCreatedAt();
+
+                if ($userType == "admin") {
+                    $userName = $block->getAdminName($userId);
+                    ?>
+                    <div class="admin-details">
+                        <div class="user-details">
+                            <span>
+                                <?= __($userName) ?>
+                                |
+                                <?= __($createAt) ?>
+                            </span>
+                        </div>
+                        <div class="user-message">
+                            <p>
+                                <?= __($message->getTicketDescription()) ?>
+                            </p>
+                            <?php if ($message->getAttachment()): ?>
+                                <a href="<?php echo $attachment; ?>" target="_blank" title="<?= __($message->getAttachment()) ?>">
+                                    <?= __($message->getAttachment()) ?>
+                                </a>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                    <?php
+                } else {
+                    $userName = $block->getCustomerName($userId);
+                    ?>
+                    <div class="customer-details">
+                        <div class="user-details">
+                            <span>
+                                <?= __($userName) ?>
+                                |
+                                <?= __($createAt) ?>
+                            </span>
+                        </div>
+                        <div class="user-message">
+                            <p>
+                                <?= __($description) ?>
+                            </p>
+                            <?php if ($message->getAttachment()): ?>
+                                <a href="<?php echo $attachment; ?>" target="_blank" title="<?= __($message->getAttachment()) ?>">
+                                    <?= __($message->getAttachment()) ?>
+                                </a>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                    <?php
+                }
+                ?>
+            <?php endforeach; ?>
+        </div>
+    <?php endif; ?>
+</div>

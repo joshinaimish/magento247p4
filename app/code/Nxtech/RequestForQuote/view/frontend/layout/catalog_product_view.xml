@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <move element="product.info.rfq" destination="product.info.social" before="-"/>
+        <referenceContainer name="content">
+            <block class="Nxtech\RequestForQuote\Block\RequestForQuote" ifconfig="rfq/general/enabled" name="product.info.rfq" template="Nxtech_RequestForQuote::requestbutton.phtml" />
+        </referenceContainer>
+    </body>
+</page>

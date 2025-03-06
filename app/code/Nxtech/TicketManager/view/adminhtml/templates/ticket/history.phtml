@@ -1,0 +1,69 @@
+<?php
+/** @var \Nxtech\TicketManager\Block\Template $block */
+$ticketData = $block->getTicketDetail();
+//print_r($ticketData->getData());
+$id = $ticketData->getId();
+$collection = $block->getTicketHistory($id);
+//print_r($collection->getData());
+?>
+<?php if ($collection->getSize() > 0): ?>
+    <div class="ticket-history-section">
+        <?php foreach ($collection as $message):
+            $userName = '';
+            $userType = $message->getUserType();
+            $userId = $message->getUserId();
+            $createAt = $message->getCreatedAt();
+            $attachment = $block->getAttachmentFile($message->getAttachment());
+            ?>
+            <?php
+            if ($userType == "admin") {
+                $userName = $block->getAdminName($userId);
+                ?>
+                <div class="ticket-detail left">
+                    <div class="user-details">
+                        <span>
+                            <?= __($userName) ?>
+                            |
+                            <?= __($createAt) ?>
+                        </span>
+                    </div>
+                    <div class="user-message">
+                        <p>
+                            <?= __($message->getTicketDescription()) ?>
+                        </p>
+                        <?php if ($message->getAttachment()): ?>
+                            <a href="<?php echo $attachment; ?>" target="_blank" title="<?= __($message->getAttachment()) ?>">
+                                <?= __($message->getAttachment()) ?>
+                            </a>
+                        <?php endif; ?>
+                    </div>
+                </div>
+                <?php
+            } else {
+                $userName = $block->getCustomerName($userId);
+                ?>
+                <div class="ticket-detail right">
+                    <div class="user-details">
+                        <span>
+                            <?= __($userName) ?>
+                            |
+                            <?= __($createAt) ?>
+                        </span>
+                    </div>
+                    <div class="user-message">
+                        <p>
+                            <?= __($message->getTicketDescription()) ?>
+                        </p>
+                        <?php if ($message->getAttachment()): ?>
+                            <a href="<?php echo $attachment; ?>" target="_blank" title="<?= __($message->getAttachment()) ?>">
+                                <?= __($message->getAttachment()) ?>
+                            </a>
+                        <?php endif; ?>
+                    </div>
+                </div>
+                <?php
+            }
+            ?>
+        <?php endforeach; ?>
+    </div>
+<?php endif; ?>

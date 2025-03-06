@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+	<acl>
+		<resources>
+			<resource id="Magento_Backend::admin">
+				<resource id="Nxtech_TicketManager::TicketManager" title="TicketManager" sortOrder="10">
+					<resource id="Nxtech_TicketManager::TicketManager_save" title="Save TicketManager" sortOrder="10"/>
+					<resource id="Nxtech_TicketManager::TicketManager_delete" title="Delete TicketManager" sortOrder="20"/>
+					<resource id="Nxtech_TicketManager::TicketManager_update" title="Update TicketManager" sortOrder="30"/>
+					<resource id="Nxtech_TicketManager::TicketManager_view" title="View TicketManager" sortOrder="40"/>
+				</resource>
+				<resource id="Nxtech_TicketManager::TicketChat" title="TicketChat" sortOrder="10">
+					<resource id="Nxtech_TicketManager::TicketChat_save" title="Save TicketChat" sortOrder="10"/>
+					<resource id="Nxtech_TicketManager::TicketChat_delete" title="Delete TicketChat" sortOrder="20"/>
+					<resource id="Nxtech_TicketManager::TicketChat_update" title="Update TicketChat" sortOrder="30"/>
+					<resource id="Nxtech_TicketManager::TicketChat_view" title="View TicketChat" sortOrder="40"/>
+				</resource>
+			</resource>
+		</resources>
+	</acl>
+</config>

@@ -1,0 +1,74 @@
+<?php
+/** @var \Nxtech\TicketManager\Block\TicketManager $block */
+$collection = $block->getTicketCollection();
+$newUrl = $block->getAddUrl();
+$customerId = $block->getCustomerId();
+?>
+
+<a href="<?php echo $newUrl; ?>" class="new-ticket" title="<?= __('New Ticket') ?>"><?= __('New Ticket') ?></a>
+<?php if ($block->getPagerHtml()): ?>
+    <div class="order-products-toolbar toolbar bottom"><?php echo $block->getPagerHtml(); ?></div>
+<?php endif ?>
+<?php $collection = $block->getTicketCollection(); ?>
+<?php if ($collection && sizeof($collection)): ?>
+    <div class="table-wrapper orders-history">
+        <table class="data table table-ticket-items history" id="my-ticket-table">
+            <caption class="table-caption"><?php echo __('Grid Record') ?></caption>
+            <thead>
+                <tr>
+                    <th scope="col" class="col id"><?php echo __('ID') ?></th>
+                    <th scope="col" class="col subject"><?php echo __('Subject') ?></th>
+                    <th scope="col" class="col status"><?php echo __(argc: 'Status') ?></th>
+                    <th scope="col" class="col priority"><?php echo __(argc: 'Priority') ?></th>
+                    <th scope="col" class="col product"><?php echo __('Category') ?></th>
+                    <th scope="col" class="col created_at"><?php echo __('Created At') ?></th>
+                    <th scope="col" class="col actions"><?php echo __('Action') ?></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                foreach ($collection as $ticket): ?>
+                    <?php
+                    $id = $ticket->getId();
+                    $subject = $ticket->getSubject();
+                    $status = $block->getStatusText($ticket->getStatus());
+                    $priority = $block->getPriorityText($ticket->getPriority());
+                    $category = $block->getCategoryText($ticket->getCategory());
+                    $createdAt = $ticket->getCreatedAt();
+                    $editUrl = $block->getEditUrl($id);
+                    ?>
+                    <tr>
+                        <td data-th="<?= $block->escapeHtml(__('ID')) ?>" class="col id">
+                            <?php echo $id; ?>
+                        </td>
+                        <td data-th="<?= $block->escapeHtml(__('ID')) ?>" class="col subject">
+                            <?php echo $subject; ?>
+                        </td>
+                        <td data-th="<?= $block->escapeHtml(data: __('Status')) ?>" class="col status">
+                            <?php echo $status ?>
+                        </td>
+                        <td data-th="<?= $block->escapeHtml(data: __('Priority')) ?>" class="col priority">
+                            <?php echo $priority ?>
+                        </td>
+                        <td data-th="<?= $block->escapeHtml(__('Category')) ?>" class="col category">
+                            <?php echo $category ?>
+                        </td>
+                        <td data-th="<?= $block->escapeHtml(__('Created At')) ?>" class="col created_at">
+                            <?php echo $createdAt; ?>
+                        </td>
+                        <td data-th="<?= $block->escapeHtml(__('Action')) ?>" class="col action">
+                            <a href="<?php echo $editUrl; ?>"
+                                title="<?= $block->escapeHtml(__('Action')) ?>"><?= $block->escapeHtml(__('Edit')) ?></a>
+                        </td>
+
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+    <?php if ($block->getPagerHtml()): ?>
+        <div class="order-products-toolbar toolbar bottom"><?php echo $block->getPagerHtml(); ?></div>
+    <?php endif ?>
+<?php else: ?>
+    <div class="message info empty"><span><?php echo __('No Ticket.'); ?></span></div>
+<?php endif ?>

@@ -1,0 +1,63 @@
+<?xml version="1.0" ?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+	<route url="/V1/nxtech-ticketmanager/ticketmanager" method="POST">
+		<service class="Nxtech\TicketManager\Api\TicketManagerRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="Nxtech_TicketManager::TicketManager_save"/>
+		</resources>
+	</route>
+	<route url="/V1/nxtech-ticketmanager/ticketmanager/search" method="GET">
+		<service class="Nxtech\TicketManager\Api\TicketManagerRepositoryInterface" method="getList"/>
+		<resources>
+			<resource ref="Nxtech_TicketManager::TicketManager_view"/>
+		</resources>
+	</route>
+	<route url="/V1/nxtech-ticketmanager/ticketmanager/:ticketmanagerId" method="GET">
+		<service class="Nxtech\TicketManager\Api\TicketManagerRepositoryInterface" method="get"/>
+		<resources>
+			<resource ref="Nxtech_TicketManager::TicketManager_view"/>
+		</resources>
+	</route>
+	<route url="/V1/nxtech-ticketmanager/ticketmanager/:ticketmanagerId" method="PUT">
+		<service class="Nxtech\TicketManager\Api\TicketManagerRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="Nxtech_TicketManager::TicketManager_update"/>
+		</resources>
+	</route>
+	<route url="/V1/nxtech-ticketmanager/ticketmanager/:ticketmanagerId" method="DELETE">
+		<service class="Nxtech\TicketManager\Api\TicketManagerRepositoryInterface" method="deleteById"/>
+		<resources>
+			<resource ref="Nxtech_TicketManager::TicketManager_delete"/>
+		</resources>
+	</route>
+	<route url="/V1/nxtech-ticketmanager/ticketchat" method="POST">
+		<service class="Nxtech\TicketManager\Api\TicketChatRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="Nxtech_TicketManager::TicketChat_save"/>
+		</resources>
+	</route>
+	<route url="/V1/nxtech-ticketmanager/ticketchat/search" method="GET">
+		<service class="Nxtech\TicketManager\Api\TicketChatRepositoryInterface" method="getList"/>
+		<resources>
+			<resource ref="Nxtech_TicketManager::TicketChat_view"/>
+		</resources>
+	</route>
+	<route url="/V1/nxtech-ticketmanager/ticketchat/:ticketchatId" method="GET">
+		<service class="Nxtech\TicketManager\Api\TicketChatRepositoryInterface" method="get"/>
+		<resources>
+			<resource ref="Nxtech_TicketManager::TicketChat_view"/>
+		</resources>
+	</route>
+	<route url="/V1/nxtech-ticketmanager/ticketchat/:ticketchatId" method="PUT">
+		<service class="Nxtech\TicketManager\Api\TicketChatRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="Nxtech_TicketManager::TicketChat_update"/>
+		</resources>
+	</route>
+	<route url="/V1/nxtech-ticketmanager/ticketchat/:ticketchatId" method="DELETE">
+		<service class="Nxtech\TicketManager\Api\TicketChatRepositoryInterface" method="deleteById"/>
+		<resources>
+			<resource ref="Nxtech_TicketManager::TicketChat_delete"/>
+		</resources>
+	</route>
+</routes>

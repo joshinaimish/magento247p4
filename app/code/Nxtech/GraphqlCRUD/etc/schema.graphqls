@@ -1,0 +1,41 @@
+type Query {
+    student(id: String @doc(description: "Query by Student Id.")): Student
+        @resolver(class: "Nxtech\\GraphqlCRUD\\Model\\Resolver\\Student")
+        @doc(description: "Query by Get Student By ID.")
+}
+
+type Student {
+    id: String @doc(description: "Student Id.")
+    name: String @doc(description: "Student name.")
+    city: String @doc(description: "Student city.")
+    degree: String @doc(description: "Student Degree.")
+}
+
+type Mutation {
+    addStudent(input: AddStudentInput): AddStudentInput
+        @resolver(class: "Nxtech\\GraphqlCRUD\\Model\\Resolver\\AddStudent")
+        @doc(description: "Input Add new Student.")
+    updateStudent(input: UpdateStudentInput): UpdateStudentInput
+        @resolver(class: "Nxtech\\GraphqlCRUD\\Model\\Resolver\\UpdateStudent")
+        @doc(description: "Input Update Existing Student Detail.")
+    deleteStudent(input: DeleteStudentInput): DeleteStudentInput
+        @resolver(class: "Nxtech\\GraphqlCRUD\\Model\\Resolver\\DeleteStudent")
+        @doc(description: "Input Delete Student.")
+}
+
+input AddStudentInput {
+    name: String @doc(description: "Input name.")
+    city: String @doc(description: "Input city.")
+    degree: String @doc(description: "Input degree.")
+}
+
+input UpdateStudentInput {
+    id: String @doc(description: "Input Student Id.")
+    name: String @doc(description: "Input name.")
+    city: String @doc(description: "Input city.")
+    degree: String @doc(description: "Input degree.")
+}
+
+input DeleteStudentInput {
+    id: String @doc(description: "Input Student Id.")
+}

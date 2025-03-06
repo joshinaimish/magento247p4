@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+	<table name="nxtech_blog" resource="default" engine="innodb" comment="Nxtech Blog Table">
+		<column xsi:type="int" name="id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity Id"/>
+		<constraint xsi:type="primary" referenceId="PRIMARY">
+			<column name="id"/>
+		</constraint>
+		<column name="title" nullable="true" xsi:type="text" comment="Title"/>
+		<column name="blog_image" nullable="true" xsi:type="text" comment="Blog Image"/>
+		<column name="content" nullable="true" xsi:type="text" comment="Content"/>
+		<column name="category" nullable="true" xsi:type="int" comment="Category" identity="false"/>
+		<column name="auther" nullable="true" xsi:type="text" comment="Auther"/>
+		<column name="status" nullable="true" xsi:type="boolean" comment="Status"/>
+		<column name="created_at" nullable="false" xsi:type="datetime" comment="Create At" default="CURRENT_TIMESTAMP" on_update="false"/>
+		<column name="updated_at" nullable="true" xsi:type="datetime" comment="Updated At" default="CURRENT_TIMESTAMP" on_update="true"/>
+	</table>
+</schema>

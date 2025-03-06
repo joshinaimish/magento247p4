@@ -1,0 +1,57 @@
+<?php
+$product = $block->getProduct();
+$productId = $product->getId();
+$countryList = $block->getCountryList();
+?>
+<div class="rfq-btn-section">
+    <button type="button" title="<?= __('Request for Quote') ?>" class="rfq-button">
+        <span><?= __('Request for Quote') ?></span>
+    </button>
+</div>
+<div id="rfq-modal" style="display:none;">
+    <div class="rfq-section">
+        <div class="rfq-ajax-form">
+            <form id="rfq-form" method="post" enctype="multipart/form-data" data-mage-init='{"validation": {}}'>
+                <input type="hidden" name="product_id" value="<?= $productId; ?>" id="product_id" />
+                <label for="name"><?= __('Name') ?></label>
+                <input type="text" name="name" class="input-text" data-validate="{required:true}"><br><br>
+                <label for="email"><?= __('Email') ?></label>
+                <input type="text" name="email" class="input-text"
+                    data-validate="{required:true, 'validate-email':true}"><br><br>
+                <label for="country"><?= __('Country') ?> </label>
+                <select name="country" id="country" data-validate="{required:true}">
+                    <option value=""><?= __('Select an option') ?></option>
+                    <?php
+                    foreach ($countryList as $code => $name) { ?>
+                        <option value="<?= $code ?>"><?= __($name) ?></option>
+                    <?php }
+                    ?>
+                </select><br><br>
+                <label for="phone"><?= __('Phone') ?></label>
+                <input type="text" name="phone"><br><br>
+                <label for="message"><?= __('Description') ?></label><br>
+                <textarea name="description" id="description" cols="30" rows="4"></textarea><br><br>
+                <input name="file_attachment" id="file_attachment" type="file" class="file_attachment"
+                    data-validate="{required:true}"><br><br>
+                <input type="checkbox" name="term_condition" id="term_condition" value="1" />
+                <label for="term_condition"><?= __('Term Condition') ?></label><br><br>
+                <input type="submit" value="Save" class="action-save" />
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    require(['jquery', 'mage/validation'], function ($) {
+        var dataForm = $('#rfq-form');
+        dataForm.mage('validation', {});
+    });
+</script>
+<script type="text/x-magento-init">
+    {
+    "*": {
+        "Nxtech_RequestForQuote/js/rfq": {
+                "baseUrl": "<?= $block->getCustomUrl(); ?>"
+            }
+        }
+}
+</script>

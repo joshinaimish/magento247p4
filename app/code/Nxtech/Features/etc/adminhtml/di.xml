@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<!-- <preference for="Cart2Quote\Quotation\Model\Quote\Email\AbstractSender" type="Nxtech\Features\Model\Quote\Email\Sender" /> -->
+	
+	<!-- <type name="Cart2Quote\Quotation\Model\Quote\Email\AbstractSender">
+        <plugin name="custom_sender_plugin" type="Nxtech\Features\Plugin\SenderPlugin" />
+    </type> 
+ -->
+	<preference for="Cart2Quote\Quotation\Model\Quote\Email\Sender\Sender" type="Nxtech\Features\Model\Quote\Email\NewSender" />
+</config>

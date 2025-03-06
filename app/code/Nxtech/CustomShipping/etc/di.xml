@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<preference for="Nxtech\GraphqlCRUD\Api\StudentRepositoryInterface" type="Nxtech\GraphqlCRUD\Model\StudentRepository"/>
+	<preference for="Nxtech\GraphqlCRUD\Api\Data\StudentInterface" type="Nxtech\GraphqlCRUD\Model\Student"/>
+	<preference for="Nxtech\GraphqlCRUD\Api\Data\StudentSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+</config>
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Di/etc/di.xsd">
+    <type name="Magento\Framework\GraphQl\Schema\Type\Definition\ObjectType">
+        <arguments>
+            <argument name="type" xsi:type="string">AvailableShippingMethods</argument>
+            <argument name="resolver" xsi:type="string">Nxtech\CustomShipping\Model\Resolver\AvailableShippingMethods</argument>
+        </arguments>
+    </type>
+</config>

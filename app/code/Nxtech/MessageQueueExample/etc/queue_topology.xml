@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework-message-queue:etc/topology.xsd">
+  <exchange name="asynchronous.product.delete" type="topic" connection="amqp">
+    <binding id="asynchronous.product.delete" topic="asynchronous.product.delete" destinationType="queue" destination="asynchronous.product.delete"/>
+  </exchange>
+</config>

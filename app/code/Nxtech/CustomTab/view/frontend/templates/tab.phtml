@@ -1,0 +1,10 @@
+<?php
+if (!empty($block->getJsLayout())) {
+    $jsLayout = json_decode($block->getJsLayout(), true);
+    foreach ($jsLayout as $layout) {
+        if (isset($layout['title']) && isset($layout['value'])) { ?>
+            <h1><?= $layout['title']; ?></h1>
+            <div><?= $layout['value']; ?></div>
+        <?php }
+    }
+} ?>

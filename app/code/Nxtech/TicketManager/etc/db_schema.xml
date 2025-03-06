@@ -1,0 +1,41 @@
+<?xml version="1.0" ?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+	<table name="ticketmanager" resource="default" engine="innodb" comment="ticketmanager Table">
+		<column xsi:type="int" name="id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity Id"/>
+		<constraint xsi:type="primary" referenceId="PRIMARY">
+			<column name="id"/>
+		</constraint>
+		<column name="category" nullable="true" xsi:type="int" comment="category" identity="false"/>
+		<column name="subject" nullable="true" xsi:type="text" comment="subject"/>
+		<column name="priority" nullable="true" xsi:type="int" comment="priority" identity="false"/>
+		<!-- <column name="attachment" nullable="true" xsi:type="text" comment="attachment"/> -->
+		<column name="status" nullable="true" xsi:type="int" comment="status" identity="false"/>
+		<column name="rating" nullable="true" xsi:type="int" comment="rating" identity="false"/>
+		<column name="user_id" nullable="true" xsi:type="int" comment="user_id" identity="false"/>
+		<column name="user_type" nullable="true" xsi:type="varchar" comment="user_type" length="255"/>
+		<!-- <column name="created_at" nullable="true" xsi:type="datetime" comment="created_at"/>
+		<column name="updated_at" nullable="true" xsi:type="datetime" comment="updated_at"/> -->
+		<column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"
+				comment="Creation Time"/>
+		<column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP"
+				comment="Update Time"/>
+	</table>
+	<table name="ticketchat" resource="default" engine="innodb" comment="ticketchat Table">
+		<column xsi:type="int" name="ticketchat_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity Id"/>
+		<constraint xsi:type="primary" referenceId="PRIMARY">
+			<column name="ticketchat_id"/>
+		</constraint>
+		<column name="ticket_id" nullable="false" xsi:type="int" unsigned="true" comment="ticket_id"/>
+		<column name="user_id" nullable="true" xsi:type="int" comment="user_id" identity="false"/>
+		<column name="user_type" nullable="true" xsi:type="varchar" comment="user_type" length="255"/>
+		<column name="ticket_description" nullable="true" xsi:type="text" comment="ticket_description"/>
+		<column name="attachment" nullable="true" xsi:type="text" comment="attachment"/>
+		<!-- <column name="created_at" nullable="true" xsi:type="datetime" comment="created_at"/>
+		<column name="updated_at" nullable="true" xsi:type="datetime" comment="updated_at"/> -->
+		<column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"
+				comment="Creation Time"/>
+		<column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP"
+				comment="Update Time"/>
+		 <constraint xsi:type="foreign" referenceId="ID" table="ticketchat" column="ticket_id" referenceTable="ticketmanager" referenceColumn="id" onDelete="CASCADE"/>
+	</table>
+</schema>

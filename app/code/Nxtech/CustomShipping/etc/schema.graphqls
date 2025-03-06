@@ -1,0 +1,17 @@
+type AvailableShippingMethods {
+    carrier_code: String!
+    carrier_title: String!
+    method_code: String!
+    method_title: String!
+    amount: Money!
+    price_excl_tax: Money!
+    price_incl_tax: Money!
+    error_message: String
+}
+
+type Query {
+    availableShippingMethods: [AvailableShippingMethods]
+        @resolver(
+            class: "Nxtech\\CustomShipping\\Model\\Resolver\\AvailableShippingMethods"
+        )
+}

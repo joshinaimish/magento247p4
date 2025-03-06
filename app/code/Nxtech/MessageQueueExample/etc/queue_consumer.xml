@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework-message-queue:etc/consumer.xsd">
+    <consumer name="asynchronous.product.delete" queue="asynchronous.product.delete" connection="amqp" consumerInstance="Magento\Framework\MessageQueue\Consumer" handler="Nxtech\MessageQueueExample\Model\ProductDeleteHandler::process" maxMessages="500"/>
+</config>

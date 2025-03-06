@@ -1,0 +1,75 @@
+<?php
+/** @var \Nxtech\TicketManager\Block\TicketManager $block */
+$backUrl = $block->getViewUrl();
+$priorities = $block->getPriority();
+$categories = $block->getCategory();
+?>
+<a href="<?php echo $backUrl; ?>" class="back" title="<?= __('Back') ?>"><?= __('Back') ?></a>
+
+<form class="form contact" action="<?= $block->escapeUrl($block->getFormAction()) ?>" enctype="multipart/form-data"
+    id="ticket-form" method="post" data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>"
+    data-mage-init='{"validation":{}}'>
+    <fieldset class="fieldset">
+        <legend class="legend"><span><?= $block->escapeHtml(__('Add New Ticket')) ?></span></legend><br />
+
+        <div class="field subject required">
+            <label class="label" for="subject"><span><?= $block->escapeHtml(__('Subject')) ?></span></label>
+            <div class="control">
+                <input name="subject" id="subject" title="<?= $block->escapeHtmlAttr(__('Subject')) ?>" value=""
+                    class="input-text" type="text" data-validate="{required:true}" />
+            </div>
+        </div>
+        <div class="field priority required">
+            <label class="label" for="priority"><span><?= $block->escapeHtml(__('Priority')) ?></span></label>
+            <div class="control">
+                <select name="priority" id="priority" class="input-select" data-validate="{required:true}">
+                    <option value=""><?= __('Select Priority') ?></option>
+                    <?php foreach ($priorities as $priority): ?>
+                        <option value="<?php echo $priority['value']; ?>"><?php echo (string) $priority['label']; ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+        </div>
+        <div class="field category required">
+            <label class="label" for="category"><span><?= $block->escapeHtml(__('Category')) ?></span></label>
+            <div class="control">
+                <select name="category" id="category" class="input-select" data-validate="{required:true}">
+                    <option value=""><?= __('Select Category') ?></option>
+                    <?php foreach ($categories as $category): ?>
+                        <option value="<?php echo $category['value']; ?>"><?php echo (string) $category['label']; ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+        </div>
+        <div class="field ticket_description required">
+            <label class="label" for="ticket_description">
+                <span><?= $block->escapeHtml(__('Message')) ?></span>
+            </label>
+            <div class="control">
+                <textarea name="ticket_description" id="ticket_description"
+                    title="<?= $block->escapeHtmlAttr(__('Message')) ?>" class="input-text" cols="5" rows="3"
+                    data-validate="{required:true}"></textarea>
+            </div>
+        </div>
+        <div class="field attachment">
+            <label class="label" for="attachment">
+                <span><?= $block->escapeHtml(__('Attachment')) ?></span>
+            </label>
+            <div class="control">
+                <input type="file" id="attachment" name="attachment">
+            </div>
+        </div>
+
+    </fieldset>
+    <div class="actions-toolbar">
+        <div class="primary">
+            <input type="hidden" name="hideit" id="hideit" value="" />
+            <button type="submit" title="<?= $block->escapeHtmlAttr(__('Submit')) ?>" class="action submit primary"
+                id="send2">
+                <span><?= $block->escapeHtml(__('Submit')) ?></span>
+            </button>
+        </div>
+    </div>
+</form>

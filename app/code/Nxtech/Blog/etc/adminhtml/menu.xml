@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+	<menu>
+		<!-- <add id="Nxtech::top_level" title="Nxtech" module="Nxtech_Blog" sortOrder="9999" resource="Magento_Backend::content"/> -->
+		<add id="Nxtech_Blog::nxtech_blog" title="Blog" module="Nxtech_Blog" sortOrder="9999" resource="Magento_Backend::content" parent="Nxtech::top_level" action="nxtech_blog/blog/index"/>
+	</menu>
+</config>

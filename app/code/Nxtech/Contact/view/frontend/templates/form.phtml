@@ -1,0 +1,52 @@
+<form id="contact-form">
+    <input type="text" id="name" name="name" placeholder="Name" required />
+    <input type="email" id="email" name="email" placeholder="Email" required />
+    <textarea id="message" name="message" placeholder="Message" required></textarea>
+    <button type="submit">Submit</button>
+</form>
+
+<br /><br /><br />
+<div class="product data items"
+    data-mage-init='{"mage/tabs": {"openedState": "active", "animate": {"duration": 100}, "active": 0, "disabled": [5], "disabledState": "disabled"}}'>
+    <div class="item title" data-role="collapsible">
+        <a class="switch" data-toggle="trigger" href="#tab-cars">Cars</a>
+    </div>
+    <div id="tab-cars" class="item content" data-role="content">Cars content</div>
+
+    <div class="item title" data-role="collapsible">
+        <a class="switch" data-toggle="trigger" href="#tab-movies">Movies</a>
+    </div>
+    <div id="tab-movies" class="item content" data-role="content">Movies content</div>
+
+    <div class="item title" data-role="collapsible">
+        <a class="switch" data-toggle="trigger" href="#tab-music">Music</a>
+    </div>
+    <div id="tab-music" class="item content" data-role="content">Music Content</div>
+
+    <div class="item title" data-role="collapsible">
+        <a class="switch" data-toggle="trigger" href="#tab-test">Test</a>
+    </div>
+    <div id="tab-test" class="item content" data-role="content">Test content</div>
+
+
+</div>
+
+
+<script>
+    /*   require([
+          'jquery',
+          'tabs'], function ($) {
+              $(".item").tabs();
+          }); */
+</script>
+
+
+<script type="text/x-magento-init">
+{
+    "#contact-form": {
+        "contactForm": {
+            "url": "<?php echo $block->getUrl('rest/V1/nxtech/contact/submit'); ?>"
+        }
+    }
+}
+</script>

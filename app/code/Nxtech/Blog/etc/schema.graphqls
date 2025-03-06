@@ -1,0 +1,129 @@
+# Get collection with filter by Id (Select)
+type BlogCategory {
+    category_id: Int
+    category_name: String
+}
+
+type NxtechBlogPost {
+    id: Int
+    title: String
+    content: String
+    status: Int
+    created_at: String
+    updated_at: String
+    category: BlogCategory
+}
+
+type Query {
+    getBlogPosts(id: Int): [NxtechBlogPost]
+        @resolver(class: "Nxtech\\Blog\\Model\\Resolver\\Blog")
+
+    blogPosts(
+        pageSize: Int = 10
+        currentPage: Int = 1
+        filter: BlogPostFilterInput
+        sort: BlogPostSortInput
+    ): BlogPostResult
+        @resolver(class: "Nxtech\\Blog\\Model\\Resolver\\BlogPostList")
+
+    getCustomerOrder: [CustomerDetail]
+        @resolver(class: "Nxtech\\Blog\\Model\\Resolver\\Customer")
+}
+# END Get collection with filter by Id (Select)
+
+# Create,Update and Delete
+type BlogPostData {
+    id: Int
+    title: String
+    content: String
+    auther: String
+    category: String
+    status: Int
+    created_at: String
+    updated_at: String
+}
+
+type DeleteBlogResponse {
+    success: Boolean!
+    message: String
+}
+
+type Mutation {
+    createBlogPost(
+        title: String!
+        content: String!
+        auther: String!
+        category: String!
+        status: Int!
+    ): BlogPostData
+        @resolver(class: "Nxtech\\Blog\\Model\\Resolver\\CreateBlogPost")
+
+    updateBlogPost(
+        id: Int!
+        title: String
+        content: String
+        category: String
+        status: Int
+    ): BlogPostData
+        @resolver(class: "Nxtech\\Blog\\Model\\Resolver\\UpdateBlogPost")
+
+    deleteBlogPost(id: Int!): DeleteBlogResponse
+        @resolver(class: "Nxtech\\Blog\\Model\\Resolver\\DeleteBlogPost")
+}
+# END Create,Update and Delete
+# Search and filter and sort and pagination
+
+input BlogPostFilterInput {
+    title: String
+}
+
+input BlogPostSortInput {
+    title: SortOrder
+}
+
+enum SortOrder {
+    ASC
+    DESC
+}
+
+type BlogPostResult {
+    items: [NxtechBlogPost]
+    total_count: Int
+    total_pages: Int
+}
+# END Search and filter and sort and pagination
+
+# Get Customer detail and it's order and item
+type CustomerDetail {
+    firstname: String
+    lastname: String
+    email: String
+    orders: [OrderDetail]
+}
+
+type OrderDetail {
+    order_id: Int
+    increment_id: String
+    total: Float
+    subtotal: Float
+    billing_address: BillingAddress
+    shipping_address: ShippingAddress
+}
+
+type BillingAddress {
+    billing_address_id: Int
+}
+
+type ShippingAddress {
+    shipping_address_id: Int
+}
+
+type NxtechBlogPost {
+    id: Int
+    title: String
+    content: String
+    status: Int
+    created_at: String
+    updated_at: String
+    category: BlogCategory
+}

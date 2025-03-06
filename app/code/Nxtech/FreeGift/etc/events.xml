@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+     <!-- add option with quote item when add to cart -->
+     <event name="checkout_cart_product_add_after">
+        <observer name="nxtech_free_gift_item" instance="Nxtech\FreeGift\Observer\FreeGiftItem" />
+    </event> 
+     <event name="checkout_cart_update_items_after">
+        <observer name="nxtech_freegift_update_free_product" instance="Nxtech\FreeGift\Observer\UpdateCartItem"/>
+    </event> 
+    <event name="sales_quote_remove_item">
+        <observer name="nxtech_remove_free_product" instance="Nxtech\FreeGift\Observer\RemoveFreeGiftItem"/>
+    </event>
+</config>

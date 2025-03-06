@@ -1,0 +1,45 @@
+<!--@subject {{trans "Request For Quote"}} @-->
+<!--@vars {
+"var product_name": "Product Name"
+} @-->
+
+{{template config_path="design/email/header_template"}}
+<table style="float:left; margin-right: 10px" class="fue-abc-items">
+   <tr>
+       <td>
+           <div class="greeting">Hi {{var name}},</div>
+       </td>
+   </tr>
+   <tr>
+    <td>Product Id:</td>
+    <td>{{var product_name}}</td>
+  </tr>
+  <tr>
+    <td>Name:</td>
+    <td>{{var name}}</td>
+  </tr>
+  <tr>
+    <td>Email:</td>
+    <td>{{var email}}</td>
+  </tr>
+  <tr>
+    <td>Phone:</td>
+    <td>{{var phone}}</td>
+  </tr>
+  <tr>
+    <td>Country:</td>
+    <td>{{var country}}</td>
+  </tr>
+  <tr>
+    <td>Description:</td>
+    <td>{{var description}}</td>
+  </tr>
+   <tr>
+       <td>
+           <div>
+               {{trans "Looking forward to seeing you around!"}}
+           </div>
+       </td>
+   </tr>
+</table>
+{{template config_path="design/email/footer_template"}}

@@ -1,0 +1,17 @@
+<div id="custom-component" data-bind="scope:'custom-tutorial'">
+    <!-- ko template: getTemplate() --> <!-- /ko -->
+</div>
+<script type="text/x-magento-init">
+    {
+        "#custom-component":{
+            "Magento_Ui/js/core/app":{
+                "components":{
+                    "custom-tutorial":{
+                        "component": "Nxtech_KnockoutSample/js/customViewModel",
+                        "template": "Nxtech_KnockoutSample/custom-template"
+                    }
+                }
+            }
+        }
+    }
+</script>

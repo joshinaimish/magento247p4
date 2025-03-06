@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+	<table name="nxtech_requestforquote" resource="default" engine="innodb" comment="nxtech_requestforquote Table">
+		<column xsi:type="int" name="id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity Id"/>
+		<constraint xsi:type="primary" referenceId="PRIMARY">
+			<column name="id"/>
+		</constraint>
+		<column name="product_id" padding="10" nullable="false" xsi:type="int" comment="Product Id"/>
+		<column name="name" nullable="true" xsi:type="varchar" comment="Name" length="255"/>
+		<column name="email" nullable="true" xsi:type="varchar" comment="Email" length="255"/>
+		<column name="country" nullable="true" xsi:type="varchar" comment="Coutry" length="255"/>
+		<column name="phone" nullable="true" xsi:type="varchar" comment="Phone" length="255"/>
+		<column name="description" nullable="true" xsi:type="text" comment="Description"/>
+		<column name="term_condition" nullable="true" xsi:type="boolean" comment="Term Condition"/>
+		<column name="file_attachment" nullable="true" xsi:type="text" comment="File Attachment"/>
+		<column name="created_at" nullable="true" xsi:type="date" comment="created_at"/>
+		<column name="updated_at" nullable="true" xsi:type="date" comment="updated_at"/>
+	</table>
+</schema>

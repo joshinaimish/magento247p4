@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<preference for="Nxtech\RequestForQuote\Api\RfqRepositoryInterface" type="Nxtech\RequestForQuote\Model\RfqRepository"/>
+	<preference for="Nxtech\RequestForQuote\Api\Data\RfqInterface" type="Nxtech\RequestForQuote\Model\Rfq"/>
+	<preference for="Nxtech\RequestForQuote\Api\Data\RfqSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+	 <preference for="Magento\Framework\Mail\Template\TransportBuilder" type="Nxtech\RequestForQuote\Model\Mail\TransportBuilder"/>
+
+	<virtualType name="Nxtech\RequestForQuote\Model\ResourceModel\Rfq\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">nxtech_requestforquote</argument>
+			<argument name="resourceModel" xsi:type="string">Nxtech\RequestForQuote\Model\ResourceModel\Rfq\Collection</argument>
+		</arguments>
+	</virtualType>
+	<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+		<arguments>
+			<argument name="collections" xsi:type="array">
+				<item name="nxtech_requestforquote_listing_data_source" xsi:type="string">Nxtech\RequestForQuote\Model\ResourceModel\Rfq\Grid\Collection</item>
+			</argument>
+		</arguments>
+	</type>
+</config>

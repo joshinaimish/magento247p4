@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+	<route url="/V1/nxtech-requestforquote/rfq" method="POST">
+		<service class="Nxtech\RequestForQuote\Api\RfqRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="Nxtech_RequestForQuote::rfq_save"/>
+		</resources>
+	</route>
+	<route url="/V1/nxtech-requestforquote/rfq/search" method="GET">
+		<service class="Nxtech\RequestForQuote\Api\RfqRepositoryInterface" method="getList"/>
+		<resources>
+			<resource ref="Nxtech_RequestForQuote::rfq_view"/>
+		</resources>
+	</route>
+	<route url="/V1/nxtech-requestforquote/rfq/:rfqId" method="GET">
+		<service class="Nxtech\RequestForQuote\Api\RfqRepositoryInterface" method="get"/>
+		<resources>
+			<resource ref="Nxtech_RequestForQuote::rfq_view"/>
+		</resources>
+	</route>
+	<route url="/V1/nxtech-requestforquote/rfq/:rfqId" method="PUT">
+		<service class="Nxtech\RequestForQuote\Api\RfqRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="Nxtech_RequestForQuote::rfq_update"/>
+		</resources>
+	</route>
+	<route url="/V1/nxtech-requestforquote/rfq/:rfqId" method="DELETE">
+		<service class="Nxtech\RequestForQuote\Api\RfqRepositoryInterface" method="deleteById"/>
+		<resources>
+			<resource ref="Nxtech_RequestForQuote::rfq_delete"/>
+		</resources>
+	</route>
+</routes>

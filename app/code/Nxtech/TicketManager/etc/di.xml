@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<preference for="Nxtech\TicketManager\Api\TicketManagerRepositoryInterface" type="Nxtech\TicketManager\Model\TicketManagerRepository"/>
+	<preference for="Nxtech\TicketManager\Api\Data\TicketManagerInterface" type="Nxtech\TicketManager\Model\TicketManager"/>
+	<preference for="Nxtech\TicketManager\Api\Data\TicketManagerSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+	<virtualType name="Nxtech\TicketManager\Model\ResourceModel\TicketManager\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">ticketmanager</argument>
+			<argument name="resourceModel" xsi:type="string">Nxtech\TicketManager\Model\ResourceModel\TicketManager\Collection</argument>
+		</arguments>
+	</virtualType>
+	<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+		<arguments>
+			<argument name="collections" xsi:type="array">
+				<item name="nxtech_ticketmanager_ticketmanager_listing_data_source" xsi:type="string">Nxtech\TicketManager\Model\ResourceModel\TicketManager\Grid\Collection</item>
+			</argument>
+		</arguments>
+	</type>
+	<preference for="Nxtech\TicketManager\Api\TicketChatRepositoryInterface" type="Nxtech\TicketManager\Model\TicketChatRepository"/>
+	<preference for="Nxtech\TicketManager\Api\Data\TicketChatInterface" type="Nxtech\TicketManager\Model\TicketChat"/>
+	<preference for="Nxtech\TicketManager\Api\Data\TicketChatSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+</config>
